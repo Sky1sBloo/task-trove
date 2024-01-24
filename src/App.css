@@ -1,0 +1,16 @@
+@import './styles/colors.css';
+
+body {
+	background-color: var(--light-gray);
+	min-height: 100%;
+	margin: 0px;
+	font-family: Arial, sans-serif;
+}
+
+.AppBody {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	height: 85vh; 
+}

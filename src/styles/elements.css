@@ -1,0 +1,23 @@
+@import './colors.css';
+
+.textbox {
+	box-sizing: border-box;
+	background-color: var(--light-gray);
+	padding: 10px;
+	margin: 5px;
+	border: none;
+}
+
+.form-submit {
+	width: 100px;
+	padding: 10px;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	border: none;
+}
+
+.error-text {
+	font-size: 15px;
+	color: red;
+	margin: 0px;
+}

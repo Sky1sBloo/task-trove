@@ -1,0 +1,23 @@
+#properties-panel {
+	flex: 1;
+}
+
+#properties-panel form {
+	display: flex;
+	flex-direction: column;
+}
+
+.properties-textbox {
+	padding: 10px;
+	margin-bottom: 15px;
+	background-color: transparent;
+	border-color: var(--gray);
+	border-style: solid;
+	border-width: 2px;
+	outline: none;
+}
+
+#properties-panel textarea {
+	resize: none;
+	height: 5rem;
+}

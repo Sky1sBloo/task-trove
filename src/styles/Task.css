@@ -1,0 +1,49 @@
+.task form {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.task .trash-button {
+	background-color: transparent;
+	border: none;
+	color: var(--dark-gray);
+	width: 2rem;
+	height: 2rem;
+	visibility: hidden;
+}
+
+.task .trash-button:hover {
+	background-color: var(--light-gray);
+}
+
+.task:hover .trash-button {
+	visibility: visible;
+}
+
+.task input[type="checkbox"] {
+	width: 20px;
+	height: 20px;
+	margin-right: 10px;
+}
+
+.task-tags {
+	display: flex;
+	align-items: center;
+}
+
+.task-tag {
+	display: flex;
+}
+
+.tag-color {
+	width: 30px;
+	height: 1rem;
+	border-radius: 5px;
+	margin-right: 5px; 
+}
+
+.task-tags span {
+	margin-right: 1rem;
+	font-size: 0.8rem;
+}

@@ -1,0 +1,34 @@
+@import './elements.css';
+
+.login-register {
+	display: flex;
+	box-sizing: border-box;
+	flex-direction: column;
+	align-items: center;
+	padding: 30px;
+	padding-top: 0px;
+	width: 25%;
+	min-width: 400px;
+	background-color: white;
+}
+
+.login-register > h1 {
+	font-size: 50px;
+	margin-bottom: 5px;
+}
+
+.login-register > form {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 100%;
+}
+
+.login-register .textbox {
+	width: 100%;
+}
+
+.login-register hr {
+	width: 100%;
+	border-color: var(--light-gray);
+}

@@ -1,0 +1,49 @@
+@import './colors.css';
+
+#lists-panel {
+	background-color: white;
+	padding: 20px;
+	margin-right: 20px;
+	flex: 1;
+	height: 100%;
+	min-width: 400px;
+}
+
+#task-navigation {
+	display: flex;
+	flex-direction: column;
+}
+
+.title-and-insert {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+#lists-panel button {
+	padding: 10px;
+	padding-left: 15px;
+	padding-right: 15px;
+	border: none;
+	background-color: white;
+	text-align: left;
+}
+
+#lists-panel button:hover{
+	background-color: var(--light-gray);
+}
+
+#lists-panel hr {
+	border-color: var(--light-gray);
+}
+
+#lists-panel h3 {
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+#lists-panel ul {
+	list-style-type: none;
+	padding-left: 10px;
+	margin: 0px;
+}

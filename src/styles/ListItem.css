@@ -1,0 +1,15 @@
+.list-item {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.list-item button {
+	height: 40px;
+	width: 40px;
+	visibility: hidden;
+}
+
+.list-item:hover button {
+	visibility: visible;
+}
