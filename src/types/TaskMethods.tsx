@@ -9,3 +9,11 @@ export enum ListMethods {
 	DELETE,
 	DELETE_TEMP
 }
+
+export enum TagMethods {
+	INSERT,
+	INSERT_TEMP,
+	DELETE,
+	DELETE_TEMP,
+	CHANGE_COLOR
+}
