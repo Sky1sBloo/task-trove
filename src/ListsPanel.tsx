@@ -13,8 +13,10 @@ import './styles/ListPanel.css';
 interface ListsPanelProps {
 	listsHandler: ListsHandler;
 }
-const ListsPanel = ({ listsHandler }: ListsPanelProps) => {
-	const [tempLists, setTempLists] = useState<number>(0);  // State that sets the number of temporary ListItem 
+const ListsPanel = ({ listsHandler }: ListsPanelProps) => {  
+	// State that sets the number of temporary listItem or tagItem
+	const [tempLists, setTempLists] = useState<number>(0);
+	const [tempTags, setTempTags] = useState<number>(0);
 
 	/**
 	 * Callback function passed on ListItem for it to be modified
@@ -54,8 +56,8 @@ const ListsPanel = ({ listsHandler }: ListsPanelProps) => {
 			<li key={i}>
 				<ListItem modifyListCallback={modifyList} />
 			</li>));
-
 	}
+
 	return (
 		<div id="lists-panel">
 			<div id="task-navigation">
