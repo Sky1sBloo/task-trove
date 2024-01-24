@@ -1,6 +1,6 @@
 import { useLayoutEffect, useState, useCallback} from 'react';
 import { useNavigate, NavigateFunction } from 'react-router-dom';
-import axios, { AxiosError, AxiosResponse } from 'axios';
+import axios, { AxiosError } from 'axios';
 import ListsPanel from './ListsPanel';
 import TasksPanel from './TasksPanel';
 import { ListData } from './types/TaskData';
