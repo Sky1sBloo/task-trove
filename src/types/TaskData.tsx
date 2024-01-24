@@ -18,4 +18,10 @@ export interface ListData {
 	name: string;
 }
 
+export interface TagData {
+	tagID: number;
+	name: string;
+	color: string | null;
+}
+
 export default TaskData;
