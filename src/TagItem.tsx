@@ -27,6 +27,22 @@ const TagItem = ({modifyTagCallback, tagData}: TagItemProps) => {
 		}
 	}
 
+	const deleteTag = (event: React.MouseEvent<HTMLElement>) => {
+		event.preventDefault();
+
+		if (isTempTag) {
+			modifyTagCallback(TagMethods.DELETE_TEMP);
+		} else {
+			if (tagData) {
+				modifyTagCallback(TagMethods.DELETE, {
+					tagID: tagData.tagID
+				});
+			} else {
+				console.error('TagID.name doesn\'t exist on deleteTag');
+			}
+		}
+	}
+
 	useEffect(() => {
 		if (!isTempTag && tagData) {
 			setTagName(tagData.name);
@@ -44,7 +60,7 @@ const TagItem = ({modifyTagCallback, tagData}: TagItemProps) => {
 				<input type="text" onChange={(event) => setTagNameTextbox(event.target.value)} /> }
 			<ColorSelect colors={tagColors} onColorSelect={(color: string) => setTagColor(color as TagColors)}/>
 			<button className="nav-button" type="button" 
-				onClick={() => modifyTagCallback(TagMethods.DELETE_TEMP)} ><FaTrash /></button>
+				onClick={deleteTag} ><FaTrash /></button>
 		</form>
 	);
 }
