@@ -15,7 +15,7 @@ class TagsHandler {
 		this.setTags = setTags;
 	}
 
-	async retrieveListData(): Promise<void> {
+	async retrieveTagData(): Promise<void> {
 		try {
 			const tagsResponse: AxiosResponse = await axios.get('/api/tasks/tags');
 			const tags: TagData[] = tagsResponse.data;
