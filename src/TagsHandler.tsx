@@ -34,7 +34,7 @@ class TagsHandler {
 				name: name,
 				color: color
 			});
-			this.retrieveListData();
+			this.retrieveTagData();
 		} catch (error) {
 			console.error(`Cannot insert tag to database ${error}`);
 		}
@@ -47,6 +47,7 @@ class TagsHandler {
 					tagID: tagID
 				}
 			});
+			this.retrieveTagData();
 		} catch (error) {
 			console.error(`Cannot delete tag on database ${error}`);
 		}
