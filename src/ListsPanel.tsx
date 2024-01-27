@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
 import { FaRegCalendar, FaCaretRight, FaAngleDoubleRight } from 'react-icons/fa';
 import ListItem from './ListItem';
-import { ListData } from './types/TaskData';
-import { ListMethods } from './types/TaskMethods';
+import TagItem from './TagItem';
+import { ListData, TagData } from './types/TaskData';
+import { ListMethods, TagMethods } from './types/TaskMethods';
 import ListsHandler from './ListsHandler';
 import './styles/ListPanel.css';
 
@@ -45,6 +46,17 @@ const ListsPanel = ({ listsHandler }: ListsPanelProps) => {
 		}
 	}
 
+	const modifyTag = (method: TagMethods, tagData?: Partial<TagData>) => {
+		switch (method) {
+			case TagMethods.INSERT_TEMP:
+				setTempTags(tempTags + 1);
+				break;
+			case TagMethods.DELETE_TEMP:
+				setTempTags(tempTags - 1);
+				break;
+		}
+	}
+
 	useEffect(() => {
 		listsHandler.retrieveListData();
 	}, [listsHandler]);
@@ -58,18 +70,28 @@ const ListsPanel = ({ listsHandler }: ListsPanelProps) => {
 			</li>));
 	}
 
+	const renderTempTags = () => {
+		return ( Array.from({length: tempTags}, (_, i) => 
+			<li key={i}>
+				<TagItem modifyTagCallback={modifyTag} />
+			</li>
+		));
+	}
+
 	return (
 		<div id="lists-panel">
 			<div id="task-navigation">
 				<h3>Tasks</h3>
-				<button>{ <FaAngleDoubleRight /> } Upcoming</button>
-				<button>{ <FaCaretRight /> } Today </button>
-				<button>{ <FaRegCalendar /> } Calendar</button>
+				<button className="nav-button">{ <FaAngleDoubleRight /> } Upcoming</button>
+				<button className="nav-button">{ <FaCaretRight /> } Today </button>
+				<button className="nav-button">{ <FaRegCalendar /> } Calendar</button>
 			</div>
 			<hr />
 			<div className="title-and-insert">
 				<h3>Lists</h3>
-				<button name="AddList" onClick={() => modifyList(ListMethods.INSERT_TEMP, {})}>+</button>
+				<button name="AddList" 
+					className="nav-button" 
+					onClick={() => modifyList(ListMethods.INSERT_TEMP, {})}>+</button>
 			</div>
 			<ul>
 				{ listsHandler.lists.map((list: ListData) => 
@@ -81,8 +103,13 @@ const ListsPanel = ({ listsHandler }: ListsPanelProps) => {
 			<hr />
 			<div className="title-and-insert">
 				<h3>Tags</h3>
-				<button name="AddTag">+</button>
+				<button name="AddTag"
+					className="nav-button"
+					onClick={() => modifyTag(TagMethods.INSERT_TEMP)}>+</button>
 			</div>
+			<ul>
+				{ renderTempTags() }
+			</ul>
 		</div>
 	);
 }

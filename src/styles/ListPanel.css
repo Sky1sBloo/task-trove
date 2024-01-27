@@ -20,7 +20,7 @@
 	justify-content: space-between;
 }
 
-#lists-panel button {
+#lists-panel .nav-button {
 	padding: 10px;
 	padding-left: 15px;
 	padding-right: 15px;
@@ -29,7 +29,7 @@
 	text-align: left;
 }
 
-#lists-panel button:hover{
+#lists-panel .nav-button:hover{
 	background-color: var(--light-gray);
 }
 

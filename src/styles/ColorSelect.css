@@ -1,0 +1,20 @@
+.color-select {
+	display: flex;
+	flex-direction: column;
+	width: 50px;
+	height: 1rem;
+}
+
+.color-select button {
+	padding: 10px;
+	padding-left: 15px;
+	padding-right: 15px;
+	border: none; 
+}
+.color-select button:hover {
+	border: 2px solid black;
+}
+
+.color-select-item {
+	position: relative;
+}
