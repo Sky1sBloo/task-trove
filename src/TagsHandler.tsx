@@ -17,15 +17,39 @@ class TagsHandler {
 
 	async retrieveListData(): Promise<void> {
 		try {
+			const tagsResponse: AxiosResponse = await axios.get('/api/tasks/tags');
+			const tags: TagData[] = tagsResponse.data;
+			this.setTags(tags);
+		} catch (error) {
+			if (axios.isAxiosError(error)) {
+				const axiosError: AxiosError = error;
+				console.error(axiosError.message);
+			}
 		}
 	}
 
 	async insertTagToDatabse(name: string, color: string): Promise<void> {
-		await axios.post('/api/tasks/tags', {
-			name: name,
-			color: color
-		});
-		
+		try {
+			await axios.post('/api/tasks/tags', {
+				name: name,
+				color: color
+			});
+			this.retrieveListData();
+		} catch (error) {
+			console.error(`Cannot insert tag to database ${error}`);
+		}
+	}
+
+	async deleteTagOnDatabase(tagID: number): Promise<void> {
+		try {
+			await axios.delete('/api/tasks/tags', {
+				data: {
+					tagID: tagID
+				}
+			});
+		} catch (error) {
+			console.error(`Cannot delete tag on database ${error}`);
+		}
 	}
 }
 
