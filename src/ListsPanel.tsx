@@ -71,7 +71,8 @@ const ListsPanel = ({ listsHandler, tagsHandler }: ListsPanelProps) => {
 
 	useEffect(() => {
 		listsHandler.retrieveListData();
-	}, [listsHandler]);
+		tagsHandler.retrieveTagData();
+	}, []);
 
 
 	// Renders all temporary list
@@ -120,6 +121,10 @@ const ListsPanel = ({ listsHandler, tagsHandler }: ListsPanelProps) => {
 					onClick={() => modifyTag(TagMethods.INSERT_TEMP)}>+</button>
 			</div>
 			<ul>
+				{ tagsHandler.tags.map((tag: TagData) => 
+					<li key={tag.tagID}>
+						<TagItem modifyTagCallback={modifyTag} tagData={tag} />
+					</li>) }
 				{ renderTempTags() }
 			</ul>
 		</div>
