@@ -55,7 +55,7 @@ const ListItem = ({modifyListCallback, listData}: ListItemProps) => {
 	return (
 		<form className="list-item" onSubmit={initializeList}>
 			{ listName? <p>{listName}</p> : <input type="text" onChange={(event) => setListNameTextBox(event.target.value)}/> }
-			<button type="button" onClick={deleteList}><FaTrash /></button>
+			<button type="button" className="nav-button" onClick={deleteList}><FaTrash /></button>
 		</form>
 	);
 }

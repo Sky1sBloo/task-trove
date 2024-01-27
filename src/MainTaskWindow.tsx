@@ -3,7 +3,7 @@ import { useNavigate, NavigateFunction } from 'react-router-dom';
 import axios, { AxiosError } from 'axios';
 import ListsPanel from './ListsPanel';
 import TasksPanel from './TasksPanel';
-import { ListData } from './types/TaskData';
+import { TagData, ListData } from './types/TaskData';
 import PropertiesPanel from './PropertiesPanel';
 import ListsHandler from './ListsHandler';
 import './styles/MainTaskWindow.css';
@@ -11,6 +11,7 @@ import './styles/MainTaskWindow.css';
 const MainTaskWindow = () => {
 	const [userDataLoaded, setUserDataLoaded] = useState<boolean>(false);
 	const [lists, setLists] = useState<ListData[]>([]);
+	const [tags, setTags] = useState<TagData[]>([]);
 	const listsHandler = new ListsHandler(lists, setLists);
 	const navigate: NavigateFunction = useNavigate();
 	/**

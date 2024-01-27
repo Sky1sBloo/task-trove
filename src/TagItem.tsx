@@ -3,6 +3,9 @@ import { FaTrash } from 'react-icons/fa';
 import { TagData } from './types/TaskData';
 import { TagMethods } from './types/TaskMethods';
 import TagColors from './types/TagColors';
+import ColorSelect from './ColorSelect';
+
+import './styles/TagItem.css';
 
 interface TagItemProps {
 	modifyTagCallback: (method: TagMethods, tagData?: Partial<TagData>) => void;
@@ -10,7 +13,7 @@ interface TagItemProps {
 }
 const TagItem = ({modifyTagCallback, tagData}: TagItemProps) => {
 	const [tagName, setTagName] = useState<string | undefined>(undefined);
-	const [tagColor,setTagColor] = useState<TagColors>(TagColors.LIGHT_GRAY);
+	const [tagColor, setTagColor] = useState<TagColors>(TagColors.LIGHT_GRAY);
 	const [isTempTag, setIsTempTag] = useState<boolean>();
 	const [tagNameTextbox, setTagNameTextbox] = useState<string>('');
 
@@ -34,16 +37,14 @@ const TagItem = ({modifyTagCallback, tagData}: TagItemProps) => {
 	useEffect(() => {
 		setIsTempTag(tagData != undefined);
 	}, [tagData]);
+
 	return (
 		<form className="tag-item" onSubmit={initializeTag}>
 			{ tagName ? <p>{tagName}</p> :
 				<input type="text" onChange={(event) => setTagNameTextbox(event.target.value)} /> }
-			<select>
-				{ tagColors.map((color: string) => 
-					<option className="tag-color" style={{backgroundColor: color}} value={color}/>
-				)}
-			</select>
-			<button type="button" ><FaTrash /></button>
+			<ColorSelect colors={tagColors} onColorSelect={(color: string) => setTagColor(color as TagColors)}/>
+			<button className="nav-button" type="button" 
+				onClick={() => modifyTagCallback(TagMethods.DELETE_TEMP)} ><FaTrash /></button>
 		</form>
 	);
 }
