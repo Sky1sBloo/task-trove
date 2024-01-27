@@ -58,6 +58,7 @@ const ListsPanel = ({ listsHandler, tagsHandler }: ListsPanelProps) => {
 			case TagMethods.INSERT:
 				console.log('inserting new tag');
 				if (tagData && tagData.name) {
+					setTempLists(tempLists - 1);
 					tagsHandler.insertTagToDatabse(tagData.name, tagData.color);
 				}
 				break;
