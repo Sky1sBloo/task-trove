@@ -30,19 +30,29 @@ class ListsHandler {
 	}
 
 	async insertListToDatabase(name: string): Promise<void> {
-		await axios.post('/api/tasks/lists', {
-			name: name
-		});
+		try {
+			await axios.post('/api/tasks/lists', {
+				name: name
+			});
 		this.retrieveListData();
+
+		} catch (error) {
+			console.error(`Cannot insert list to database: ${error}`);
+		}
 	}
 
 	async deleteListOnDatabase(listID: number): Promise<void> {
-		await axios.delete('/api/tasks/lists', {
+		try  {
+			await axios.delete('/api/tasks/lists', {
 			data: {
 				listID: listID
 			}
 		});
-		this.retrieveListData();
+			this.retrieveListData();
+		} catch (error) {
+			console.error(`Cannot delete list on database: ${error}`);
+		}
+
 	}
 }
 
