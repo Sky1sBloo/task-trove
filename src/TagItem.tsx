@@ -46,8 +46,9 @@ const TagItem = ({modifyTagCallback, tagData}: TagItemProps) => {
 	useEffect(() => {
 		if (!isTempTag && tagData) {
 			setTagName(tagData.name);
+		} else {
+			setTagName(undefined);
 		}
-		setTagName(undefined);
 	}, [isTempTag, tagData]);
 
 	useEffect(() => {

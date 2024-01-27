@@ -24,8 +24,7 @@ const ListsPanel = ({ listsHandler, tagsHandler }: ListsPanelProps) => {
 	/**
 	 * Callback function passed on ListItem for it to be modified
 	 */
-	const modifyList = (method: ListMethods, listData: Partial<ListData>)=> {
-		switch (method) {
+	const modifyList = (method: ListMethods, listData: Partial<ListData>)=> { switch (method) {
 			case ListMethods.INSERT_TEMP:
 				setTempLists(tempLists + 1);
 				break;
@@ -48,12 +47,16 @@ const ListsPanel = ({ listsHandler, tagsHandler }: ListsPanelProps) => {
 		}
 	}
 
+	/**
+	 * Callback function on modifyTag for it to be modified
+	 */
 	const modifyTag = (method: TagMethods, tagData?: Partial<TagData>) => {
 		switch (method) {
 			case TagMethods.INSERT_TEMP:
 				setTempTags(tempTags + 1);
 				break;
 			case TagMethods.INSERT:
+				console.log('inserting new tag');
 				if (tagData && tagData.name) {
 					tagsHandler.insertTagToDatabse(tagData.name, tagData.color);
 				}
