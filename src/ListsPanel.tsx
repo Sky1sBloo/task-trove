@@ -54,9 +54,17 @@ const ListsPanel = ({ listsHandler, tagsHandler }: ListsPanelProps) => {
 				setTempTags(tempTags + 1);
 				break;
 			case TagMethods.INSERT:
+				if (tagData && tagData.name) {
+					tagsHandler.insertTagToDatabse(tagData.name, tagData.color);
+				}
 				break;
 			case TagMethods.DELETE_TEMP:
 				setTempTags(tempTags - 1);
+				break;
+			case TagMethods.DELETE:
+				if (tagData && tagData.tagID) {
+					tagsHandler.deleteTagOnDatabase(tagData.tagID);
+				}
 				break;
 		}
 	}
