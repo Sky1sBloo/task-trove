@@ -5,6 +5,7 @@ import TagItem from './TagItem';
 import { ListData, TagData } from './types/TaskData';
 import { ListMethods, TagMethods } from './types/TaskMethods';
 import ListsHandler from './ListsHandler';
+import TagsHandler from './TagsHandler';
 import './styles/ListPanel.css';
 
 
@@ -13,8 +14,9 @@ import './styles/ListPanel.css';
  */
 interface ListsPanelProps {
 	listsHandler: ListsHandler;
+	tagsHandler: TagsHandler;
 }
-const ListsPanel = ({ listsHandler }: ListsPanelProps) => {  
+const ListsPanel = ({ listsHandler, tagsHandler }: ListsPanelProps) => {  
 	// State that sets the number of temporary listItem or tagItem
 	const [tempLists, setTempLists] = useState<number>(0);
 	const [tempTags, setTempTags] = useState<number>(0);
@@ -50,6 +52,8 @@ const ListsPanel = ({ listsHandler }: ListsPanelProps) => {
 		switch (method) {
 			case TagMethods.INSERT_TEMP:
 				setTempTags(tempTags + 1);
+				break;
+			case TagMethods.INSERT:
 				break;
 			case TagMethods.DELETE_TEMP:
 				setTempTags(tempTags - 1);

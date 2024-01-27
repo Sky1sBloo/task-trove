@@ -6,13 +6,17 @@ import TasksPanel from './TasksPanel';
 import { TagData, ListData } from './types/TaskData';
 import PropertiesPanel from './PropertiesPanel';
 import ListsHandler from './ListsHandler';
+import TagsHandler from './TagsHandler';
 import './styles/MainTaskWindow.css';
 
 const MainTaskWindow = () => {
 	const [userDataLoaded, setUserDataLoaded] = useState<boolean>(false);
 	const [lists, setLists] = useState<ListData[]>([]);
 	const [tags, setTags] = useState<TagData[]>([]);
+
 	const listsHandler = new ListsHandler(lists, setLists);
+	const tagsHandler = new TagsHandler(tags, setTags);
+
 	const navigate: NavigateFunction = useNavigate();
 	/**
 	 * If axios responds with an unauthorized request, go back to login
@@ -50,7 +54,7 @@ const MainTaskWindow = () => {
 	}
 	return (
 		<div id="main-task-window">
-			<ListsPanel listsHandler={listsHandler} /> 
+			<ListsPanel listsHandler={listsHandler} tagsHandler={tagsHandler} /> 
 			<TasksPanel 
 				title="Today" />
 			<PropertiesPanel lists={lists}/>
