@@ -28,7 +28,7 @@ class TagsHandler {
 		}
 	}
 
-	async insertTagToDatabse(name: string, color: string): Promise<void> {
+	async insertTagToDatabse(name: string, color?: string): Promise<void> {
 		try {
 			await axios.post('/api/tasks/tags', {
 				name: name,
