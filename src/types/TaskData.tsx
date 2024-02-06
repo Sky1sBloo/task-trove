@@ -24,4 +24,8 @@ export interface TagData {
 	color: string | null;
 }
 
+// For calling a put request
+export interface UpdateTagData extends Partial<Omit<TagData, 'tagID'>> {
+}
+
 export default TaskData;

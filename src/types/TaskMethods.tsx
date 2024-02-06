@@ -13,6 +13,7 @@ export enum ListMethods {
 export enum TagMethods {
 	INSERT,
 	INSERT_TEMP,
+	UPDATE,
 	DELETE,
 	DELETE_TEMP,
 	CHANGE_COLOR

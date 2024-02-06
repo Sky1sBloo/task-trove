@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { FaRegCalendar, FaCaretRight, FaAngleDoubleRight } from 'react-icons/fa';
 import ListItem from './ListItem';
 import TagItem from './TagItem';
-import { ListData, TagData } from './types/TaskData';
+import { ListData, TagData, UpdateTagData } from './types/TaskData';
 import { ListMethods, TagMethods } from './types/TaskMethods';
 import ListsHandler from './ListsHandler';
 import TagsHandler from './TagsHandler';
@@ -56,10 +56,14 @@ const ListsPanel = ({ listsHandler, tagsHandler }: ListsPanelProps) => {
 				setTempTags(tempTags + 1);
 				break;
 			case TagMethods.INSERT:
-				console.log('inserting new tag');
 				if (tagData && tagData.name) {
 					setTempLists(tempLists - 1);
 					tagsHandler.insertTagToDatabse(tagData.name, tagData.color);
+				}
+				break;
+			case TagMethods.UPDATE:
+				if (tagData && tagData.tagID) {
+					tagsHandler.updateTagOnDatabase(tagData.tagID, tagData as UpdateTagData);
 				}
 				break;
 			case TagMethods.DELETE_TEMP:
