@@ -13,7 +13,7 @@ interface TagItemProps {
 }
 const TagItem = ({modifyTagCallback, tagData}: TagItemProps) => {
 	const [tagName, setTagName] = useState<string | undefined>(undefined);
-	const [tagColor, setTagColor] = useState<TagColors>(TagColors.LIGHT_GRAY);
+	const [tagColor, setTagColor] = useState<string>(TagColors.LIGHT_GRAY);
 	const [isTempTag, setIsTempTag] = useState<boolean>();
 	const [tagNameTextbox, setTagNameTextbox] = useState<string>('');
 
@@ -43,6 +43,14 @@ const TagItem = ({modifyTagCallback, tagData}: TagItemProps) => {
 		}
 	}
 
+	// Also updates the database by calling the handler
+	const updateTagColor = (color: string): void => {
+		setTagColor(color);
+		if (!isTempTag && tagData) {
+			modifyTagCallback(TagMethods.UPDATE, {tagID: tagData.tagID, color: color});
+		}
+	}
+
 	useEffect(() => {
 		if (tagData) {
 			setTagName(tagData.name);
@@ -59,7 +67,10 @@ const TagItem = ({modifyTagCallback, tagData}: TagItemProps) => {
 		<form className="tag-item" onSubmit={initializeTag}>
 			{ tagName ? <p>{tagName}</p> :
 				<input type="text" onChange={(event) => setTagNameTextbox(event.target.value)} /> }
-			<ColorSelect colors={tagColors} onColorSelect={(color: string) => setTagColor(color as TagColors)}/>
+			<ColorSelect colors={tagColors} 
+				onColorSelect={(color: string) => updateTagColor(color)}
+				startingColor={tagData && tagData.color ? tagData.color : undefined}
+				/>
 			<button className="nav-button" type="button" 
 				onClick={deleteTag} ><FaTrash /></button>
 		</form>

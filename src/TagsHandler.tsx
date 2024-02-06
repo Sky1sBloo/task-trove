@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction } from 'react';
 import axios, { AxiosError, AxiosResponse } from 'axios';
-import { TagData } from './types/TaskData';
+import { TagData, UpdateTagData} from './types/TaskData';
 
 /**
  * Class containing all tag handling functions
@@ -39,6 +39,27 @@ class TagsHandler {
 			console.error(`Cannot insert tag to database ${error}`);
 		}
 	}
+
+	async updateTagOnDatabase(tagID: number, tagData: UpdateTagData) {
+		try {
+			
+			const requestBody: UpdateTagData & { tagID: number } = {
+				tagID: tagID
+			};
+			
+			if (tagData.name) {
+				requestBody.name = tagData.name;
+			}
+			if (tagData.color) {
+				requestBody.color = tagData.color;
+			}
+
+			await axios.put('/api/tasks/tags', requestBody);
+			this.retrieveTagData();
+		} catch (error) {
+			console.error(`Cannot update tag to database ${error}`);
+		}
+	} 
 
 	async deleteTagOnDatabase(tagID: number): Promise<void> {
 		try {

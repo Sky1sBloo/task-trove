@@ -2,12 +2,14 @@ import { useState } from 'react';
 import './styles/ColorSelect.css';
 
 // Custom select made for colors
+// Colors must be a valid html color
 interface ColorSelectProps {
-	colors: string[];  // Must be a valid html color
+	colors: string[];  
+	startingColor?: string; 
 	onColorSelect: (color: string) => void;
 }
-const ColorSelect = ({colors, onColorSelect}: ColorSelectProps) => {
-	const [color, setColor] = useState<string>(colors[0]);
+const ColorSelect = ({colors, startingColor, onColorSelect}: ColorSelectProps) => {
+	const [color, setColor] = useState<string>(startingColor ? startingColor : colors[0]);
 	const [displaySelection, setDisplaySelection] = useState<boolean>(false);
 	return (
 		<div className="color-select" >
