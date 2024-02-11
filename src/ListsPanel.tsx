@@ -57,7 +57,7 @@ const ListsPanel = ({ listsHandler, tagsHandler }: ListsPanelProps) => {
 				break;
 			case TagMethods.INSERT:
 				if (tagData && tagData.name) {
-					setTempLists(tempLists - 1);
+					setTempTags(tempTags- 1);
 					tagsHandler.insertTagToDatabse(tagData.name, tagData.color);
 				}
 				break;
