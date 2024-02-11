@@ -1,14 +1,18 @@
-import { ListData } from './types/TaskData';
+import { useState } from 'react';
+import { ListData, TagData } from './types/TaskData';
 import './styles/PropertiesPanel.css';
 
 
 interface PropertiesPanelProps {
+	tags: TagData[];
 	lists: ListData[];
 }
-const PropertiesPanel = ({lists}: PropertiesPanelProps) => {
+const PropertiesPanel = ({tags, lists}: PropertiesPanelProps) => {
+	const [currentTags, setCurrentTags] = useState<TagData[]>();  // Tags currently set in this specific task
+
 	return (
 		<div id="properties-panel">
-			<form>
+			<form className="textboxes">
 				<h1>Task</h1>
 				<input type="text" className="properties-textbox" name="title" placeholder="Title" />
 				<textarea className="properties-textbox" name="description" placeholder="Description" />
@@ -23,6 +27,15 @@ const PropertiesPanel = ({lists}: PropertiesPanelProps) => {
 				<span>Due Date: </span>
 				<input type="date" name="due-date" />
 			</div>
+			<form className="tag-options">
+				<span>Tags: </span>
+				<select name="tags">
+					{ tags.map((tag: TagData) => <option key={tag.tagID}>{tag.name}</option>) }
+				</select>
+				<button type="button" name="add-tag">+</button>
+				<ul className="tags">
+				</ul>
+			</form>
 		</div>
 	);
 }

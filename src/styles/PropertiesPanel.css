@@ -2,7 +2,7 @@
 	flex: 1;
 }
 
-#properties-panel form {
+#properties-panel .textboxes {
 	display: flex;
 	flex-direction: column;
 }
@@ -20,4 +20,8 @@
 #properties-panel textarea {
 	resize: none;
 	height: 5rem;
+}
+
+#properties-panel .tag-options
+{
 }

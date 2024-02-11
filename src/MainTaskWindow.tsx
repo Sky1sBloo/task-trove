@@ -57,7 +57,7 @@ const MainTaskWindow = () => {
 			<ListsPanel listsHandler={listsHandler} tagsHandler={tagsHandler} /> 
 			<TasksPanel 
 				title="Today" />
-			<PropertiesPanel lists={lists}/>
+			<PropertiesPanel tags={tags} lists={lists}/>
 		</div>
 	);
 }
