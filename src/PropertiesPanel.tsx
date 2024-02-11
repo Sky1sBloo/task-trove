@@ -8,7 +8,24 @@ interface PropertiesPanelProps {
 	lists: ListData[];
 }
 const PropertiesPanel = ({tags, lists}: PropertiesPanelProps) => {
-	const [currentTags, setCurrentTags] = useState<TagData[]>();  // Tags currently set in this specific task
+	const [currentTags, setCurrentTags] = useState<TagData[]>([]);  // Current tag id of the task
+
+	const [currentSelectedTag, setCurrentSelectedTag] = useState<string>();  // Selected tag for adding in form
+	const setNewTag = (event: React.FormEvent<HTMLFormElement>) => {
+		event.preventDefault();
+		if (currentSelectedTag && isNaN(parseInt(currentSelectedTag))) {
+			const currentTag: number = parseInt(currentSelectedTag);
+			const newTag: TagData | undefined= tags.find((value: TagData) => value.tagID === currentTag);
+
+			if (!newTag) {
+				console.error('Tag isn\'t found');
+				return;
+			}
+
+			setCurrentTags([...currentTags, newTag]);
+		}
+	}
+	// TODO: Set selection default to 1
 
 	return (
 		<div id="properties-panel">
@@ -20,20 +37,29 @@ const PropertiesPanel = ({tags, lists}: PropertiesPanelProps) => {
 			<div className="properties-options"> 
 				<span>List: </span>
 				<select name="lists">
-					{ lists.map((list: ListData) => <option key={list.listID}>{list.name}</option>) }
+					{ lists.map((list: ListData, idx: number) => 
+						<option key={idx}
+							value={list.listID}
+						>{list.name}</option>) }
 				</select>
 			</div>
 			<div className="properties-options"> 
 				<span>Due Date: </span>
 				<input type="date" name="due-date" />
 			</div>
-			<form className="tag-options">
+			<form className="tag-options" onSubmit={setNewTag}>
 				<span>Tags: </span>
-				<select name="tags">
-					{ tags.map((tag: TagData) => <option key={tag.tagID}>{tag.name}</option>) }
+				{/* Select key must be an integer */ }
+				<select name="tags" onChange={(event) => setCurrentSelectedTag(event.target.value)}>
+					{ tags.map((tag: TagData, idx: number) => 
+						<option 
+							key={idx}
+							value={tag.tagID}
+						>{tag.name}</option>) }
 				</select>
-				<button type="button" name="add-tag">+</button>
+				<button type="submit" name="add-tag">+</button>
 				<ul className="tags">
+					{ currentTags.map((tag: TagData) => <li key={tag.tagID}>{tag.name}</li>) }
 				</ul>
 			</form>
 		</div>
