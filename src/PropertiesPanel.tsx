@@ -15,6 +15,11 @@ const PropertiesPanel = ({tags, lists}: PropertiesPanelProps) => {
 		event.preventDefault();
 		if (currentSelectedTag && !isNaN(parseInt(currentSelectedTag))) {
 			const currentTag: number = parseInt(currentSelectedTag);
+	
+			const tagAlreadySelected: boolean = currentTags.find((value: TagData) => value.tagID == currentTag) !== undefined
+			if (tagAlreadySelected) {
+				return;
+			}
 			const newTag: TagData | undefined= tags.find((value: TagData) => value.tagID === currentTag);
 
 			if (!newTag) {
