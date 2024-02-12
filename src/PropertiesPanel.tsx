@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { ListData, TagData } from './types/TaskData';
 import './styles/PropertiesPanel.css';
 
@@ -13,7 +13,7 @@ const PropertiesPanel = ({tags, lists}: PropertiesPanelProps) => {
 	const [currentSelectedTag, setCurrentSelectedTag] = useState<string>();  // Selected tag for adding in form
 	const setNewTag = (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
-		if (currentSelectedTag && isNaN(parseInt(currentSelectedTag))) {
+		if (currentSelectedTag && !isNaN(parseInt(currentSelectedTag))) {
 			const currentTag: number = parseInt(currentSelectedTag);
 			const newTag: TagData | undefined= tags.find((value: TagData) => value.tagID === currentTag);
 
@@ -25,7 +25,12 @@ const PropertiesPanel = ({tags, lists}: PropertiesPanelProps) => {
 			setCurrentTags([...currentTags, newTag]);
 		}
 	}
-	// TODO: Set selection default to 1
+	
+	useEffect(() => {
+		if (tags.length > 0) {
+			setCurrentSelectedTag(tags[0].tagID.toString());
+		}
+	}, [tags]);
 
 	return (
 		<div id="properties-panel">
